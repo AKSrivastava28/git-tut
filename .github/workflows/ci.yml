@@ -1,0 +1,27 @@
+name: Basic CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  check-html:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: List files
+        run: ls -la
+
+      - name: Ensure index.html exists
+        run: |
+          if [ ! -f index.html ]; then
+            echo "index.html not found!"
+            exit 1
+          fi
+
+      - name: Success Message
+        run: echo "CI pipeline ran successfully!"
